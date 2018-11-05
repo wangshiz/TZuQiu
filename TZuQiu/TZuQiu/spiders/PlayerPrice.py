@@ -27,6 +27,7 @@ class PlayerpriceSpider(scrapy.Spider):
         datas = json.loads(response.body_as_unicode())
         lst = datas["data"]
         it["data"] = lst
+        print(it["data"])
         return it
         # for j in range(1, 11):    # 3687
         #     url = self.part1 + str(j * 10) + self.part2

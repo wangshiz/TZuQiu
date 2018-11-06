@@ -18,21 +18,16 @@ class PlayerpriceSpider(scrapy.Spider):
     part2 = "&length=10&search%5Bvalue%5D=&search%5Bregex%5D=false&extra_param%5BorderCdnLgZero%5D=true&_=1"
 
     def start_requests(self):
-        url = self.part1+str(0)+self.part2
-        yield Request(url, callback=self.parse, headers=self.header)
+        for i in range(0, 11):
+            url = self.part1 + str(i * 10) + self.part2
+            yield Request(url, callback=self.parse, dont_filter=True)
 
     def parse(self, response):
         it = TzuqiuItem()
-        # 调用body_as_unicode()是为了能处理unicode编码的数据
         datas = json.loads(response.body_as_unicode())
         lst = datas["data"]
         it["data"] = lst
-        return it
-        # for j in range(1, 11):    # 3687
-        #     url = self.part1 + str(j * 10) + self.part2
-        #     yield Request(url, callback=self.parse, headers=self.header)
-
-
+        yield it
 
 
 

@@ -18,7 +18,7 @@ class PlayerpriceSpider(scrapy.Spider):
     part2 = "&length=10&search%5Bvalue%5D=&search%5Bregex%5D=false&extra_param%5BorderCdnLgZero%5D=true&_=1"
 
     def start_requests(self):
-        for i in range(0, 11):
+        for i in range(0, 3694):
             url = self.part1 + str(i * 10) + self.part2
             yield Request(url, callback=self.parse, dont_filter=True)
 

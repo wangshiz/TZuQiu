@@ -9,6 +9,7 @@ from scrapy import log
 
 
 class TzuqiuPipeline(object):
+
     def __init__(self):
         print("正在连接数据库..")
         self.db = pymysql.connect(

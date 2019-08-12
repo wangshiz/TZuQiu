@@ -5,7 +5,7 @@
 # Don't forget to add your pipeline to the ITEM_PIPELINES setting
 # See: https://doc.scrapy.org/en/latest/topics/item-pipeline.html
 import pymysql
-from scrapy import log
+from scrapy import logformatter
 
 
 class TzuqiuPipeline(object):
@@ -17,12 +17,14 @@ class TzuqiuPipeline(object):
             port=3306,
             user="root",
             db="test",
-            charset="utf8"
+            charset="utf8",
+            password="123456"
         )
         print("连接上了")
         self.course = self.db.cursor()
 
     def process_item(self, item, spider):
+
         try:
             for i in range(0, len(item["data"])):
                 sql = """insert into player_price (player_name, age, player_main_position, league_name, current_club_name, mins, rate, current_market_value, last_market_value) values (%s, %s, %s, %s, %s, %s, %s, %s, %s)"""

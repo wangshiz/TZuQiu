@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import random
 from TZuQiu.settings import USER_AGENT_LIST
-from scrapy import log
+from scrapy import logformatter
 
 
 class MyUserAgentMiddleware(object):
